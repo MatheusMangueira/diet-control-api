@@ -1,17 +1,23 @@
 package app.vercel.matheusmangueira.dietcontrol.user.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import app.vercel.matheusmangueira.dietcontrol.dietList.model.DietListModel;
 import app.vercel.matheusmangueira.dietcontrol.user.enums.ActivityLevel;
 import app.vercel.matheusmangueira.dietcontrol.user.enums.ObjectUser;
 import app.vercel.matheusmangueira.dietcontrol.user.enums.Sex;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
@@ -59,6 +65,10 @@ public class UserModel {
 
    @Enumerated
    private ActivityLevel activityLevel;
+
+   @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+   @JsonIgnore
+   private List<DietListModel> dietList;
 
    @CreationTimestamp
    private LocalDateTime createdAt;

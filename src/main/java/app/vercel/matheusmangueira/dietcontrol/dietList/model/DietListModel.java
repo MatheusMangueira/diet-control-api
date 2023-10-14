@@ -5,26 +5,21 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import app.vercel.matheusmangueira.dietcontrol.user.model.UserModel;
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
+@Data
 @Entity(name = "tb_diet_list")
-@Table(name = "tb_diet_list")
 @EqualsAndHashCode(of = "id")
 public class DietListModel {
 

@@ -11,6 +11,7 @@ import app.vercel.matheusmangueira.dietcontrol.dtos.UserDto;
 import app.vercel.matheusmangueira.dietcontrol.repository.IUserRepository;
 import app.vercel.matheusmangueira.dietcontrol.user.model.UserModel;
 import app.vercel.matheusmangueira.dietcontrol.utils.CalculateTmb;
+import app.vercel.matheusmangueira.dietcontrol.utils.UserMapper;
 import jakarta.validation.Valid;
 
 @Service
@@ -35,18 +36,6 @@ public class UserService {
       var macros = this.utils.CalculateMacros(id, basal);
       var user = this.userRepository.findById(id).orElseThrow();
 
-      var newUser = new UserDto(
-            id,
-            user.getName(),
-            user.getSex(),
-            user.getAge(),
-            user.getWeight(),
-            user.getHeight(),
-            user.getActivityLevel(),
-            user.getObjectUser(),
-            basal,
-            macros);
-
-      return newUser;
+      return UserMapper.toDto(user, id, basal, macros);
    }
 }

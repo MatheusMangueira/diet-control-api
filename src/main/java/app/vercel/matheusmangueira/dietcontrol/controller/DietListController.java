@@ -49,7 +49,7 @@ public class DietListController {
    }
 
    @GetMapping("/list/{id}")
-   public ResponseEntity findAll(@Valid @PathVariable UUID id) {
+   public ResponseEntity findById(@Valid @PathVariable UUID id) {
       Optional<UserModel> userOptional = this.userRepository.findById(id);
 
       if (userOptional.isEmpty()) {

@@ -39,6 +39,9 @@ public class DietListModel {
    @NotNull
    private Double fat;
 
+   @NotNull
+   private Double quantity;
+
    @ManyToOne
    @JoinColumn(name = "user_id", nullable = false)
    @JsonIgnore

@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import app.vercel.matheusmangueira.dietcontrol.dtos.MacrosDto;
 import app.vercel.matheusmangueira.dietcontrol.dtos.UserDto;
-import app.vercel.matheusmangueira.dietcontrol.repository.IUserRepository;
+import app.vercel.matheusmangueira.dietcontrol.repositories.IUserRepository;
 import app.vercel.matheusmangueira.dietcontrol.user.model.UserModel;
 
 public class UserMapper {

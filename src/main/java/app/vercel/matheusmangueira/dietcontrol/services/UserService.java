@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.annotation.Validated;
 
 import app.vercel.matheusmangueira.dietcontrol.dtos.UserDto;
-import app.vercel.matheusmangueira.dietcontrol.repository.IUserRepository;
+import app.vercel.matheusmangueira.dietcontrol.repositories.IUserRepository;
 import app.vercel.matheusmangueira.dietcontrol.user.model.UserModel;
 import app.vercel.matheusmangueira.dietcontrol.utils.CalculateTmb;
 import app.vercel.matheusmangueira.dietcontrol.utils.UserMapper;

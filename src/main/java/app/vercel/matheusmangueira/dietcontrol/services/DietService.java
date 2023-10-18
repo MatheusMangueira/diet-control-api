@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import app.vercel.matheusmangueira.dietcontrol.dietList.model.DietListModel;
-import app.vercel.matheusmangueira.dietcontrol.repository.IDietListRepository;
-import app.vercel.matheusmangueira.dietcontrol.repository.IUserRepository;
+import app.vercel.matheusmangueira.dietcontrol.repositories.IDietListRepository;
+import app.vercel.matheusmangueira.dietcontrol.repositories.IUserRepository;
 import jakarta.validation.Valid;
 
 @Service

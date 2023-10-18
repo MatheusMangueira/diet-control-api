@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import app.vercel.matheusmangueira.dietcontrol.dtos.MacrosDto;
-import app.vercel.matheusmangueira.dietcontrol.repository.IUserRepository;
+import app.vercel.matheusmangueira.dietcontrol.repositories.IUserRepository;
 
 @Component
 public class CalculateTmb {

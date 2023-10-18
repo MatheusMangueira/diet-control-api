@@ -1,4 +1,4 @@
-package app.vercel.matheusmangueira.dietcontrol.controller;
+package app.vercel.matheusmangueira.dietcontrol.controllers;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +19,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import app.vercel.matheusmangueira.dietcontrol.dietList.model.DietListModel;
-import app.vercel.matheusmangueira.dietcontrol.repository.IDietListRepository;
-import app.vercel.matheusmangueira.dietcontrol.repository.IUserRepository;
+import app.vercel.matheusmangueira.dietcontrol.repositories.IDietListRepository;
+import app.vercel.matheusmangueira.dietcontrol.repositories.IUserRepository;
 import app.vercel.matheusmangueira.dietcontrol.services.DietService;
 import app.vercel.matheusmangueira.dietcontrol.user.model.UserModel;
 import jakarta.transaction.Transactional;

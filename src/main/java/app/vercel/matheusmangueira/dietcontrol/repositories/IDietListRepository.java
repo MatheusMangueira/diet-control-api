@@ -1,4 +1,4 @@
-package app.vercel.matheusmangueira.dietcontrol.repository;
+package app.vercel.matheusmangueira.dietcontrol.repositories;
 
 import java.util.List;
 import java.util.UUID;

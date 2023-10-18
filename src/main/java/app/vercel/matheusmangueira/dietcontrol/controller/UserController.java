@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,10 +42,29 @@ public class UserController {
    }
 
    @GetMapping("/{id}")
-   public ResponseEntity<UserDto> findAll(@Valid @PathVariable UUID id) {
+   public ResponseEntity findById(@Valid @PathVariable UUID id) {
+      var user = this.userRepository.findById(id);
 
-      UserDto userDto = this.userService.findUserById(id);
+      if (user.isPresent()) {
+         UserDto userDto = this.userService.findUserById(id);
+         return ResponseEntity.ok(userDto);
+      } else {
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+      }
 
-      return ResponseEntity.ok(userDto);
    }
+
+   @DeleteMapping("/{id}")
+   public ResponseEntity delete(@Valid @PathVariable UUID id) {
+      var user = this.userRepository.findById(id);
+
+      if (user.isPresent()) {
+         this.userRepository.deleteById(id);
+         return ResponseEntity.noContent().build();
+      } else {
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Usuário não encontrado");
+      }
+
+   }
+
 }

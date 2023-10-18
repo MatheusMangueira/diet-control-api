@@ -86,6 +86,10 @@ public class DietListController {
    public ResponseEntity updateDiet(@Valid @PathVariable UUID id,
          @PathVariable UUID idDiet, @RequestBody DietListModel data) {
 
+      if (id == null || idDiet == null || data == null) {
+         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Dados inválidos");
+      }
+
       var user = this.userRepository.findById(id);
       var diet = this.dietListRepository.findById(idDiet);
 
@@ -93,6 +97,15 @@ public class DietListController {
          return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Dieta não encontrado");
       }
 
+      UserModel userFound = user.get();
+      DietListModel dietFound = diet.get();
+
+      // Verificar se o ID do usuário corresponde ao ID da dieta
+      if (!userFound.getId().equals(id) && !dietFound.getId().equals(data.getId())) {
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Acesso não autorizado para atualizar esta dieta");
+      }
+
       return ResponseEntity.ok(dietService.updateDietService(data, id, idDiet));
+
    }
 }

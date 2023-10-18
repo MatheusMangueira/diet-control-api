@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -60,6 +61,18 @@ public class DietListController {
       List<DietListModel> dietListModels = this.dietListRepository.findByUser(user);
 
       return ResponseEntity.ok(dietListModels);
+   }
+
+   @DeleteMapping("/delete/{id}")
+   public ResponseEntity delete(@Valid @PathVariable UUID id) {
+      Optional<DietListModel> dietListModelOptional = this.dietListRepository.findById(id);
+
+      if (dietListModelOptional.isEmpty()) {
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Nenhum item encontrado");
+      }
+
+      this.dietListRepository.deleteById(id);
+      return ResponseEntity.ok("Item deletado com sucesso");
    }
 
 }

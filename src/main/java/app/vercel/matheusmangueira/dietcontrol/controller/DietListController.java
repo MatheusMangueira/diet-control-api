@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,7 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 import app.vercel.matheusmangueira.dietcontrol.dietList.model.DietListModel;
 import app.vercel.matheusmangueira.dietcontrol.repository.IDietListRepository;
 import app.vercel.matheusmangueira.dietcontrol.repository.IUserRepository;
+import app.vercel.matheusmangueira.dietcontrol.services.DietService;
 import app.vercel.matheusmangueira.dietcontrol.user.model.UserModel;
+import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 
 @RestController
@@ -32,6 +35,9 @@ public class DietListController {
 
    @Autowired
    private IUserRepository userRepository;
+
+   @Autowired
+   private DietService dietService;
 
    @PostMapping("/create/{id}")
    public ResponseEntity create(@Valid @PathVariable UUID id, @RequestBody DietListModel dietListModel) {
@@ -75,4 +81,18 @@ public class DietListController {
       return ResponseEntity.ok("Item deletado com sucesso");
    }
 
+   @PutMapping("/update/{id}/{idDiet}")
+   @Transactional
+   public ResponseEntity updateDiet(@Valid @PathVariable UUID id,
+         @PathVariable UUID idDiet, @RequestBody DietListModel data) {
+
+      var user = this.userRepository.findById(id);
+      var diet = this.dietListRepository.findById(idDiet);
+
+      if (user.isEmpty() && diet.isEmpty()) {
+         return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Dieta não encontrado");
+      }
+
+      return ResponseEntity.ok(dietService.updateDietService(data, id, idDiet));
+   }
 }

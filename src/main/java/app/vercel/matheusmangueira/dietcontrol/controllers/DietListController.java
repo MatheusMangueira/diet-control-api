@@ -39,7 +39,7 @@ public class DietListController {
    @Autowired
    private DietService dietService;
 
-   @PostMapping("/create/{id}")
+   @PostMapping("/{id}")
    public ResponseEntity create(@Valid @PathVariable UUID id, @RequestBody DietListModel dietListModel) {
 
       Optional<UserModel> userOptional = this.userRepository.findById(id);
@@ -55,7 +55,7 @@ public class DietListController {
 
    }
 
-   @GetMapping("/list/{id}")
+   @GetMapping("/{id}")
    public ResponseEntity findById(@Valid @PathVariable UUID id) {
       Optional<UserModel> userOptional = this.userRepository.findById(id);
 
@@ -69,7 +69,7 @@ public class DietListController {
       return ResponseEntity.ok(dietListModels);
    }
 
-   @DeleteMapping("/delete/{id}")
+   @DeleteMapping("/{id}")
    public ResponseEntity delete(@Valid @PathVariable UUID id) {
       Optional<DietListModel> dietListModelOptional = this.dietListRepository.findById(id);
 
@@ -81,7 +81,7 @@ public class DietListController {
       return ResponseEntity.ok("Item deletado com sucesso");
    }
 
-   @PutMapping("/update/{id}/{idDiet}")
+   @PutMapping("/{id}/{idDiet}")
    @Transactional
    public ResponseEntity updateDiet(@Valid @PathVariable UUID id,
          @PathVariable UUID idDiet, @RequestBody DietListModel data) {
